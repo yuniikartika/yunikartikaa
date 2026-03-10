@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Yuni - SMAN 2 Mengwi</title>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #ff8fab;
+            --secondary: #fb6f92;
+            --bg-gradient-1: #ffe5ec;
+            --bg-gradient-2: #ffc2d1;
+            --text-main: #5e3549;
+            --text-muted: #8e6c7d;
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: 0;
+            opacity: 0.7;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+
+        .blob-1 {
+            width: 350px;
+            height: 350px;
+            background: #ffb3c6;
+            top: 5%;
+            left: 5%;
+        }
+
+        .blob-2 {
+            width: 450px;
+            height: 450px;
+            background: #ffc8dd;
+            bottom: 5%;
+            right: 5%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, -40px) scale(1.05); }
+            100% { transform: translate(-20px, 30px) scale(0.95); }
+        }
+
+        .profile-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 440px;
+            perspective: 1000px;
+        }
+
+        .profile-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 35px;
+            box-shadow: 0 25px 50px rgba(255, 143, 171, 0.25), 
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            padding: 45px 35px;
+            text-align: center;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.6s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-12px) rotateX(2deg) rotateY(-2deg);
+            box-shadow: 0 35px 60px rgba(255, 143, 171, 0.35), 
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+        }
+
+        .avatar-wrapper {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px;
+            position: relative;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary), #ffe5ec);
+            box-shadow: 0 15px 30px rgba(251, 111, 146, 0.3);
+            animation: pulse-ring 3s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(251, 111, 146, 0.5), 0 15px 30px rgba(251, 111, 146, 0.3); }
+            70% { box-shadow: 0 0 0 20px rgba(251, 111, 146, 0), 0 15px 30px rgba(251, 111, 146, 0.3); }
+            100% { box-shadow: 0 0 0 0 rgba(251, 111, 146, 0), 0 15px 30px rgba(251, 111, 146, 0.3); }
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            background-color: #fff;
+            transition: transform 0.4s ease;
+        }
+
+        .profile-card:hover .avatar {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            font-size: 20px;
+            animation: float-badge 3s ease-in-out infinite;
+        }
+
+        @keyframes float-badge {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-8px) rotate(10deg); }
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--text-main);
+            font-size: 32px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        h2 {
+            font-size: 16px;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 143, 171, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-item:hover {
+            background: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(255, 143, 171, 0.2);
+        }
+
+        .info-icon {
+            font-size: 20px;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            display: block;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 15px;
+            color: var(--text-main);
+            font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            white-space: nowrap;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 22px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(251, 111, 146, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            transform: scale(1.02) translateY(-3px);
+            box-shadow: 0 15px 30px rgba(251, 111, 146, 0.5);
+        }
+
+        .highlight-box:hover::after {
+            opacity: 1;
+        }
+
+        .highlight-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 800;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: 1px;
+        }
+
+        .highlight-content {
+            font-size: 20px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .heart-icon {
+            color: #fff;
+            display: inline-block;
+            animation: beat-big 1.2s infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-left: 5px;
+        }
+
+        @keyframes beat-big {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.25); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.25); }
+        }
+
+        .social-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--secondary);
+            font-size: 22px;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(255, 143, 171, 0.25);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-btn:hover {
+            background: var(--secondary);
+            color: #fff;
+            transform: translateY(-8px) rotate(360deg);
+            box-shadow: 0 12px 25px rgba(251, 111, 146, 0.4);
+        }
+
+        .social-handle {
+            position: absolute;
+            bottom: -30px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-main);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            background: rgba(255,255,255,0.8);
+            padding: 4px 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            pointer-events: none;
+        }
+
+        .social-btn:hover .social-handle {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-text {
+            margin-top: 40px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="avatar-wrapper">
+                <img src="profil_anime.png" alt="Yuni Anime Portrait" class="avatar">
+                <div class="badge">🌸</div>
+            </div>
+
+            <h1>Yuni</h1>
+            <h2>17 Tahun | SMAN 2 Mengwi</h2>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-graduation-cap info-icon"></i>
+                    <span class="info-label">Kelas</span>
+                    <span class="info-value">XII I</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-volleyball-ball info-icon"></i>
+                    <span class="info-label">Hobi</span>
+                    <span class="info-value">Main Volly</span>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-title">
+                    <i class="fas fa-star"></i> Orang Favorit <i class="fas fa-star"></i>
+                </div>
+                <div class="highlight-content">
+                    Gilang <i class="fas fa-heart heart-icon"></i><br>
+                    <span style="font-size: 13px; font-weight: 500; opacity: 0.95;">(Atlet Volly Favoritku!)</span>
+                </div>
+            </div>
+
+            <div class="social-title">Follow Me</div>
+            <div class="social-links">
+                <!-- Instagram -->
+                <a href="https://instagram.com/yunii.kartikaaaa" target="_blank" class="social-btn" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span class="social-handle">@yunii.kartikaaaa</span>
+                </a>
+                <!-- TikTok -->
+                <a href="https://tiktok.com/@micutulips" target="_blank" class="social-btn" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                    <span class="social-handle">@micutulips</span>
+                </a>
+            </div>
+
+            <div class="footer-text">
+                Stay Cute & Keep Playing Volly ✨
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
